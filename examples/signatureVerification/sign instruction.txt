@@ -1,0 +1,8 @@
+Alice generate the private key:
+openssl genrsa -out priv_key.pem 2048
+and the corresponding public key:
+openssl rsa -in priv_key_2048.pem -pubout > rsa_key_2048.pub
+sign the SHA256 hash with the private key:
+openssl dgst -sign priv_key_2048.pem -keyform PEM -sha256 -out textSigned.sign -binary Alice.txt
+create the array with the signature:
+xxd -i textSigned.sign > textSigned.h
